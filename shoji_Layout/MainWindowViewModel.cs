@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace shoji_Layout
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel
     {
         /// <summary>
         /// 駅のレイアウト
@@ -400,8 +400,8 @@ namespace shoji_Layout
             DrinkY = new ReactiveProperty<double>(0);
 
             Bitmap = new RenderTargetBitmap(
-                station_.Width,
-                station_.Height,
+                1000,
+                1000,
                 96,
                 96,
                 PixelFormats.Default);
@@ -516,39 +516,41 @@ namespace shoji_Layout
 
                         nodes_.Clear();
 
-                                               
-                        //ノードの設定
-                        foreach ( var seats in station_.Kaisatus)
+                        //ノードの設定  
+                        foreach (var kaisatu in station_.Kaisatus) 
                         {
                             double distance = 25;
 
                             SetUpNodes(new Node(
-                                seats[0].PositionX - (seats[0].Width / 2) - distance,
-                                seats[0].PositionY - (seats[0].Height / 2) - distance));
+                                kaisatu.PositionX - (kaisatu.Width / 2) - distance,
+                                kaisatu.PositionY - (kaisatu.Height / 2) + distance));
+
                             SetUpNodes(new Node(
-                                seats[0].PositionX - (seats[0].Width / 2) - distance,
-                                seats[0].PositionY + (seats[0].Height / 2) + distance));
+                                kaisatu.PositionX - (kaisatu.Width / 2) - distance,
+                                kaisatu.PositionY - (kaisatu.Height / 2) - distance));
+
                             SetUpNodes(new Node(
-                                seats[seats.Count() - 1].PositionX + (seats[0].Width / 2) + distance,
-                                seats[seats.Count() - 1].PositionY - (seats[0].Height / 2) - distance));
+                                kaisatu.PositionX - (kaisatu.Width / 2) + distance,
+                                kaisatu.PositionY - (kaisatu.Height / 2) - distance));
+
                             SetUpNodes(new Node(
-                                seats[seats.Count() - 1].PositionX + (seats[0].Width / 2) + distance,
-                                seats[seats.Count() - 1].PositionY + (seats[0].Height / 2) + distance));
+                                kaisatu.PositionX - (kaisatu.Width / 2) + distance,
+                                kaisatu.PositionY - (kaisatu.Height / 2) + distance));                               
+                        }
+
+                        //出口の設定
+                        foreach(var goal in station_.Goals)
+                        {
+                            nodes_.Add(new Node(goal.PositionX, goal.PositionY, true));
                         }
 
                     }
 
 
 
-                    }
-
                 }
+
             }
-
-            LayoutWidth.Value = station_.Width;
-            LayoutHeight.Value = station_.Height;
-
-            DrawLayout();
         }
 
         /// <summary>
@@ -754,6 +756,24 @@ namespace shoji_Layout
             DrawLayout();
         }
 
+        ///<summary>
+        ///ノードが他のノードの近くにあった時統合する
+        /// </summary>
+        public void SetUpNodes(Node node)
+        {
+            foreach(var nodes in nodes_)
+            {
+                if (nodes.DistanceFromNode(node) < 25)
+                {
+                    nodes.X = (nodes.X + nodes.X) / 2.0;
+                    nodes.Y = (nodes.Y + nodes.Y) / 2.0;
+                    return;
+                }
+            }
+            nodes_.Add(node);
+        }
+
+
 
         /// <summary>
         /// レイアウトを描画する関数
@@ -761,6 +781,9 @@ namespace shoji_Layout
         /// <param name="layout">レイアウトの情報</param>
         public void DrawLayout()
         {
+
+            double radius = 5;
+
             Bitmap = new RenderTargetBitmap(
                 station_.Width,
                 station_.Height,
@@ -779,10 +802,10 @@ namespace shoji_Layout
             //改札の描画
             foreach (var kaisatu in station_.Kaisatus)
             {
-                    DrawContext.DrawRectangle(
-                        Brushes.White,
-                        new Pen(Brushes.Black, 1),
-                        new Rect(kaisatu.PositionX - kaisatu.Width / 2, kaisatu.PositionY - kaisatu.Height / 2, kaisatu.Width, kaisatu.Height));
+                DrawContext.DrawRectangle(
+                    Brushes.White,
+                    new Pen(Brushes.Black, 1),
+                    new Rect(kaisatu.PositionX - kaisatu.Width / 2, kaisatu.PositionY - kaisatu.Height / 2, kaisatu.Width, kaisatu.Height));
             }
 
             //エレベーターの描画
@@ -848,6 +871,16 @@ namespace shoji_Layout
                     new Rect(drink.PositionX - drink.Width / 2, drink.PositionY - drink.Height / 2, drink.Width, drink.Height));
             }
 
+            //ノードの描画
+            foreach (var node in nodes_)
+            {
+                DrawContext.DrawEllipse(
+                    Brushes.Blue,
+                    null,
+                    new Point(node.X, node.Y), radius, radius);
+            }
+
+
 
             DrawContext.Close();
 
@@ -855,6 +888,6 @@ namespace shoji_Layout
             Bitmap.Render(DrawVisual);
         }
 
-
     }
 }
+

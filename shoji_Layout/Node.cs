@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace shoji_Layout
 {
-    class Node
+    public class Node
     {
         public bool IsGoalNode;
 
