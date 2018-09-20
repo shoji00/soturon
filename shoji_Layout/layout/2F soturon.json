@@ -1,0 +1,142 @@
+{
+  "Width": 1000,
+  "Height": 1600,
+  "Kaisatus": [
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 250.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 300.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 350.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 400.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 450.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 500.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 550.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 600.0,
+      "PositionY": 360.0
+    },
+    {
+      "Width": 20.0,
+      "Height": 90.0,
+      "PositionX": 650.0,
+      "PositionY": 360.0
+    }
+  ],
+  "Rooms": [
+    {
+      "Width": 200.0,
+      "Height": 100.0,
+      "PositionX": 0.0,
+      "PositionY": 350.0
+    },
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 175.0,
+      "PositionY": 800.0
+    },
+    {
+      "Width": 275.0,
+      "Height": 100.0,
+      "PositionX": 725.0,
+      "PositionY": 350.0
+    },
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 775.0,
+      "PositionY": 800.0
+    }
+  ],
+  "StairsUp": [
+    {
+      "Width": 100.0,
+      "Height": 100.0,
+      "PositionX": 150.0,
+      "PositionY": 625.0
+    },
+    {
+      "Width": 100.0,
+      "Height": 100.0,
+      "PositionX": 750.0,
+      "PositionY": 625.0
+    }
+  ],
+  "StairsDown": [
+    {
+      "Width": 100.0,
+      "Height": 100.0,
+      "PositionX": 150.0,
+      "PositionY": 965.0
+    },
+    {
+      "Width": 100.0,
+      "Height": 100.0,
+      "PositionX": 750.0,
+      "PositionY": 965.0
+    }
+  ],
+  "Goals": [
+    {
+      "Width": 10.0,
+      "Height": 350.0,
+      "PositionX": 0.0,
+      "PositionY": 0.0
+    },
+    {
+      "Width": 10.0,
+      "Height": 350.0,
+      "PositionX": 0.0,
+      "PositionY": 0.0
+    },
+    {
+      "Width": 10.0,
+      "Height": 350.0,
+      "PositionX": 0.0,
+      "PositionY": 0.0
+    },
+    {
+      "Width": 10.0,
+      "Height": 350.0,
+      "PositionX": 990.0,
+      "PositionY": 0.0
+    }
+  ],
+  "Benchs": [],
+  "Pillars": []
+}

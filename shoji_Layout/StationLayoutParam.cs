@@ -49,48 +49,6 @@ namespace shoji_Layout
     }
 
     /// <summary>
-    /// エレベーターの情報クラス
-    /// </summary>
-    public class StationElevatorParam
-    {
-        /// <summary>
-        /// エレベーターの横幅
-        /// </summary>
-        public double Width { get; set; }
-
-        /// <summary>
-        /// エレベーターの縦幅
-        /// </summary>
-        public double Height { get; set; }
-
-        /// <summary>
-        /// エレベーターのX座標
-        /// </summary>
-        public double PositionX { get; set; }
-
-        /// <summary>
-        /// エレベーターのY座標
-        /// </summary>
-        public double PositionY { get; set; }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="width">エレベーターの縦幅</param>
-        /// <param name="height">エレベーターの横幅</param>
-        /// <param name="positionX">エレベーターのX座標</param>
-        /// <param name="positionY">エレベーターのY座標</param>
-        public StationElevatorParam(double width, double height, double positionX, double positionY)
-        {
-            Height = height;
-            Width = width;
-            PositionX = positionX;
-            PositionY = positionY;
-        }
-
-    }
-
-    /// <summary>
     /// 駅員室の情報クラス
     /// </summary>
     public class StationRoomParam
@@ -133,9 +91,9 @@ namespace shoji_Layout
     }
 
     /// <summary>
-    /// 階段の情報クラス
+    /// 階段上に線の情報クラス
     /// </summary>
-    public class StationStairsParam
+    public class StationStairsUpParam
     {
         /// <summary>
         /// 階段の横幅
@@ -164,7 +122,49 @@ namespace shoji_Layout
         /// <param name="height">階段の横幅</param>
         /// <param name="positionX">階段のX座標</param>
         /// <param name="positionY">階段のY座標</param>
-        public StationStairsParam(double width, double height, double positionX, double positionY)
+        public StationStairsUpParam(double width, double height, double positionX, double positionY)
+        {
+            Height = height;
+            Width = width;
+            PositionX = positionX;
+            PositionY = positionY;
+        }
+
+    }
+
+    /// <summary>
+    /// 階段上に線の情報クラス
+    /// </summary>
+    public class StationStairsDownParam
+    {
+        /// <summary>
+        /// 階段の横幅
+        /// </summary>
+        public double Width { get; set; }
+
+        /// <summary>
+        /// 階段の縦幅
+        /// </summary>
+        public double Height { get; set; }
+
+        /// <summary>
+        /// 階段のX座標
+        /// </summary>
+        public double PositionX { get; set; }
+
+        /// <summary>
+        /// 階段のY座標
+        /// </summary>
+        public double PositionY { get; set; }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="width">階段の縦幅</param>
+        /// <param name="height">階段の横幅</param>
+        /// <param name="positionX">階段のX座標</param>
+        /// <param name="positionY">階段のY座標</param>
+        public StationStairsDownParam(double width, double height, double positionX, double positionY)
         {
             Height = height;
             Width = width;
@@ -299,48 +299,7 @@ namespace shoji_Layout
         }
 
     }
-
-    /// <summary>
-    /// 自動販売機の情報クラス
-    /// </summary>
-    public class StationDrinkParam
-    {
-        /// <summary>
-        /// 自動販売機の横幅
-        /// </summary>
-        public double Width { get; set; }
-
-        /// <summary>
-        /// 自動販売機の縦幅
-        /// </summary>
-        public double Height { get; set; }
-
-        /// <summary>
-        /// 自動販売機のX座標
-        /// </summary>
-        public double PositionX { get; set; }
-
-        /// <summary>
-        /// 自動販売機のY座標
-        /// </summary>
-        public double PositionY { get; set; }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="width">自動販売機の縦幅</param>
-        /// <param name="height">自動販売機の横幅</param>
-        /// <param name="positionX">自動販売機のX座標</param>
-        /// <param name="positionY">自動販売機のY座標</param>
-        public StationDrinkParam(double width, double height, double positionX, double positionY)
-        {
-            Height = height;
-            Width = width;
-            PositionX = positionX;
-            PositionY = positionY;
-        }
-
-    }
+   
 
     /// <summary>
     /// 駅のレイアウトクラス
@@ -364,11 +323,6 @@ namespace shoji_Layout
         public List<StationKaisatuParam> Kaisatus { get; set; } = new List<StationKaisatuParam>();
 
         /// <summary>
-        /// エレベーターのリスト
-        /// </summary>
-        public List<StationElevatorParam> Elevators { get; set; } = new List<StationElevatorParam>();
-
-        /// <summary>
         /// 駅員室のリスト）
         /// </summary>
         public List<StationRoomParam> Rooms { get; set; } = new List<StationRoomParam>();
@@ -376,7 +330,12 @@ namespace shoji_Layout
         /// <summary>
         /// 階段のリスト
         /// </summary>
-        public List<StationStairsParam> Stairss { get; set; } = new List<StationStairsParam>();
+        public List<StationStairsUpParam> StairsUp { get; set; } = new List<StationStairsUpParam>();
+
+        /// <summary>
+        /// 階段のリスト
+        /// </summary>
+        public List<StationStairsDownParam> StairsDown { get; set; } = new List<StationStairsDownParam>();
 
         /// <summary>
         /// 出口のリスト
@@ -393,11 +352,6 @@ namespace shoji_Layout
         /// </summary>
         public List<StationPillarParam> Pillars { get; set; } = new List<StationPillarParam>();
 
-        /// <summary>
-        /// 自動販売機のリスト
-        /// </summary>
-        public List<StationDrinkParam> Drinks { get; set; } = new List<StationDrinkParam>();
-
-    }
+      }
 
 }

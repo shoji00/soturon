@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:shoji_Layout"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1500" Width="1500" Background="Black">
+        Title="MainWindow" Height="800" Width="1000" Background="Black">
     <!--Stackpanelを使うと自動的にきれいに並べてくれる-->
     <StackPanel Orientation="Horizontal">
         <!--レイアウトが表示されるコントロール-->
-        <Image Height="600"
+        <Image Height="800"
                Width="600" 
                Source="{Binding Bitmap.Value}"
                Name="myImage"/>
@@ -117,72 +117,6 @@
             </StackPanel>
 
             <TextBlock Margin="10,10,0,0"
-                       Text="Elevator"
-                       Foreground="White"
-                       FontSize="20" />
-
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,10,0,0">
-                <TextBlock Margin="10,0,0,0"
-                           Text="Width:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding ElevatorWidth.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,0,0"
-                           Text="Height:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding ElevatorHeight.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,10,0,0">
-                <TextBlock Margin="10,0,4,0"
-                           Text="     X :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding ElevatorX.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,4,0"
-                           Text="      Y :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding ElevatorY.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Add"
-                    Margin="10,10,0,0"
-                    HorizontalAlignment="Left"
-                    Height="20"
-                    Width="100"
-                    Command="{Binding AddElevatorCommand}" />
-
-                <Button Content="Remove"
-                        Margin="10,10,0,0"
-                        HorizontalAlignment="Left"
-                        Height="20"
-                        Width="100"
-                        Command="{Binding RemoveElevatorCommand}" />
-            </StackPanel>
-
-            <TextBlock Margin="10,10,0,0"
                        Text="Room"
                        Foreground="White"
                        FontSize="20" />
@@ -248,8 +182,75 @@
                         Command="{Binding RemoveRoomCommand}" />
             </StackPanel>
 
+            <TextBlock Margin="10,10,0,0"
+                       Text="StairsUp"
+                       Foreground="White"
+                       FontSize="20" />
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,10,0,0">
+                <TextBlock Margin="10,0,0,0"
+                           Text="Width:"
+                           Foreground="White"
+                           FontSize="15" />
+                <TextBox Height="20"
+                         Width="100"
+                         Text="{Binding StairsUpWidth.Value, Mode=TwoWay}"
+                         FontSize="15"
+                         HorizontalAlignment="Left" />
+
+                <TextBlock Margin="10,0,0,0"
+                           Text="Height:"
+                           Foreground="White"
+                           FontSize="15" />
+                <TextBox Height="20"
+                         Width="100"
+                         Text="{Binding StairsUpHeight.Value, Mode=TwoWay}"
+                         FontSize="15"
+                         HorizontalAlignment="Left" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,10,0,0">
+                <TextBlock Margin="10,0,4,0"
+                           Text="     X :"
+                           Foreground="White"
+                           FontSize="15" />
+                <TextBox Height="20"
+                         Width="100"
+                         Text="{Binding StairsUpX.Value, Mode=TwoWay}"
+                         FontSize="15"
+                         HorizontalAlignment="Left" />
+
+                <TextBlock Margin="10,0,4,0"
+                           Text="      Y :"
+                           Foreground="White"
+                           FontSize="15" />
+                <TextBox Height="20"
+                         Width="100"
+                         Text="{Binding StairsUpY.Value, Mode=TwoWay}"
+                         FontSize="15"
+                         HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Add"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    Height="20"
+                    Width="100"
+                    Command="{Binding AddStairsUpCommand}" />
+
+                <Button Content="Remove"
+                        Margin="10,10,0,0"
+                        HorizontalAlignment="Left"
+                        Height="20"
+                        Width="100"
+                        Command="{Binding RemoveStairsUpCommand}" />
+            </StackPanel>
+
             <TextBlock Margin="400,-480,300,590"
-                       Text="Stairs"
+                       Text="StairsDown"
                        Foreground="White"
                        FontSize="20" />
 
@@ -261,7 +262,7 @@
                            FontSize="15" />
                 <TextBox Height="20"
                          Width="100"
-                         Text="{Binding StairsWidth.Value, Mode=TwoWay}"
+                         Text="{Binding StairsDownWidth.Value, Mode=TwoWay}"
                          FontSize="15"
                          HorizontalAlignment="Left" />
 
@@ -271,11 +272,11 @@
                            FontSize="15" />
                 <TextBox Height="20"
                          Width="100"
-                         Text="{Binding StairsHeight.Value, Mode=TwoWay}"
+                         Text="{Binding StairsDownHeight.Value, Mode=TwoWay}"
                          FontSize="15"
                          HorizontalAlignment="Left" />
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal"
                         Margin="400,-580,300,590">
                 <TextBlock Margin="10,0,4,0"
@@ -284,7 +285,7 @@
                            FontSize="15" />
                 <TextBox Height="20"
                          Width="100"
-                         Text="{Binding StairsX.Value, Mode=TwoWay}"
+                         Text="{Binding StairsDownX.Value, Mode=TwoWay}"
                          FontSize="15"
                          HorizontalAlignment="Left" />
 
@@ -294,7 +295,7 @@
                            FontSize="15" />
                 <TextBox Height="20"
                          Width="100"
-                         Text="{Binding StairsY.Value, Mode=TwoWay}"
+                         Text="{Binding StairsDownY.Value, Mode=TwoWay}"
                          FontSize="15"
                          HorizontalAlignment="Left" />
             </StackPanel>
@@ -305,15 +306,17 @@
                     HorizontalAlignment="Left"
                     Height="20"
                     Width="100"
-                    Command="{Binding AddStairsCommand}" />
+                    Command="{Binding AddStairsDownCommand}" />
 
                 <Button Content="Remove"
                         Margin="-280,-580,0,590"
                         HorizontalAlignment="Left"
                         Height="20"
                         Width="100"
-                        Command="{Binding RemoveStairsCommand}" />
+                        Command="{Binding RemoveStairsDownCommand}" />
             </StackPanel>
+
+
 
             <TextBlock Margin="400,-580,300,590"
                        Text="Goal"
@@ -513,72 +516,6 @@
                         Command="{Binding RemovePillarCommand}" />
             </StackPanel>
 
-            <TextBlock Margin="400,-580,300,590"
-                       Text="Drink"
-                       Foreground="White"
-                       FontSize="20" />
-
-            <StackPanel Orientation="Horizontal"
-                        Margin="400,-580,300,590">
-                <TextBlock Margin="10,0,0,0"
-                           Text="Width:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding DrinkWidth.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,0,0"
-                           Text="Height:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding DrinkHeight.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="400,-580,300,590">
-                <TextBlock Margin="10,0,4,0"
-                           Text="     X :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding DrinkX.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,4,0"
-                           Text="      Y :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding DrinkY.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Add"
-                    Margin="400,-580,300,590"
-                    HorizontalAlignment="Left"
-                    Height="20"
-                    Width="100"
-                    Command="{Binding AddDrinkCommand}" />
-
-                <Button Content="Remove"
-                        Margin="-280,-580,300,590"
-                        HorizontalAlignment="Left"
-                        Height="20"
-                        Width="100"
-                        Command="{Binding RemoveDrinkCommand}" />
-            </StackPanel>
-
             <TextBlock Margin="10,10,0,0"
                        Text="File"
                        Foreground="White"
@@ -586,14 +523,14 @@
 
             <StackPanel Orientation="Horizontal">
                 <Button Content="Load"
-                    Margin="10,-1400,0,0"
+                    Margin="10,-1200,0,0"
                     HorizontalAlignment="Left"
                     Height="20"
                     Width="100"
                     Command="{Binding LoadLayoutCommand}" />
 
                 <Button Content="Export"
-                    Margin="10,-1400,0,0"
+                    Margin="10,-1200,0,0"
                     HorizontalAlignment="Left"
                     Height="20"
                     Width="100"
