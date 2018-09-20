@@ -77,26 +77,6 @@ namespace shoji_Layout
         public ReactiveProperty<double> KaisatuY { get; set; }
 
         /// <summary>
-        /// エレベーターの横幅
-        /// </summary>
-        public ReactiveProperty<double> ElevatorWidth { get; set; }
-
-        /// <summary>
-        /// エレベーターの縦幅
-        /// </summary>
-        public ReactiveProperty<double> ElevatorHeight { get; set; }
-
-        /// <summary>
-        /// エレベーターのX座標
-        /// </summary>
-        public ReactiveProperty<double> ElevatorX { get; set; }
-
-        /// <summary>
-        /// エレベーターのY座標
-        /// </summary>
-        public ReactiveProperty<double> ElevatorY { get; set; }
-
-        /// <summary>
         /// 駅員室の横幅
         /// </summary>
         public ReactiveProperty<double> RoomWidth { get; set; }
@@ -119,23 +99,26 @@ namespace shoji_Layout
         /// <summary>
         /// 階段の横幅
         /// </summary>
-        public ReactiveProperty<double> StairsWidth { get; set; }
+        public ReactiveProperty<double> StairsUpWidth { get; set; }
+        public ReactiveProperty<double> StairsDownWidth { get; set; }
 
         /// <summary>
         /// 階段の縦幅
         /// </summary>
-        public ReactiveProperty<double> StairsHeight { get; set; }
+        public ReactiveProperty<double> StairsUpHeight { get; set; }
+        public ReactiveProperty<double> StairsDownHeight { get; set; }
 
         /// <summary>
         /// 階段のX座標
         /// </summary>
-        public ReactiveProperty<double> StairsX { get; set; }
+        public ReactiveProperty<double> StairsUpX { get; set; }
+        public ReactiveProperty<double> StairsDownX { get; set; }
 
         /// <summary>
         /// 階段のY座標
         /// </summary>
-        public ReactiveProperty<double> StairsY { get; set; }
-
+        public ReactiveProperty<double> StairsUpY { get; set; }
+        public ReactiveProperty<double> StairsDownY { get; set; }
 
         /// <summary>
         /// 出口の横幅
@@ -198,26 +181,6 @@ namespace shoji_Layout
         public ReactiveProperty<double> PillarY { get; set; }
 
         /// <summary>
-        /// 自動販売機の横幅
-        /// </summary>
-        public ReactiveProperty<double> DrinkWidth { get; set; }
-
-        /// <summary>
-        /// 自動販売機の縦幅
-        /// </summary>
-        public ReactiveProperty<double> DrinkHeight { get; set; }
-
-        /// <summary>
-        /// 自動販売機のX座標
-        /// </summary>
-        public ReactiveProperty<double> DrinkX { get; set; }
-
-        /// <summary>
-        /// 自動販売機のY座標
-        /// </summary>
-        public ReactiveProperty<double> DrinkY { get; set; }
-
-        /// <summary>
         /// レイアウトの大きさを更新するコマンド
         /// </summary>
         public ReactiveCommand UpdateLayoutSize { get; set; }
@@ -243,16 +206,6 @@ namespace shoji_Layout
         public ReactiveCommand RemoveKaisatuCommand { get; set; }
 
         /// <summary>
-        /// エレベーターを追加するコマンド
-        /// </summary>
-        public ReactiveCommand AddElevatorCommand { get; set; }
-
-        /// <summary>
-        /// エレベーターを削除するコマンド
-        /// </summary>
-        public ReactiveCommand RemoveElevatorCommand { get; set; }
-
-        /// <summary>
         /// 駅員室を追加するコマンド
         /// </summary>
         public ReactiveCommand AddRoomCommand { get; set; }
@@ -265,13 +218,14 @@ namespace shoji_Layout
         /// <summary>
         /// 階段を追加するコマンド
         /// </summary>
-        public ReactiveCommand AddStairsCommand { get; set; }
+        public ReactiveCommand AddStairsUpCommand { get; set; }
+        public ReactiveCommand AddStairsDownCommand { get; set; }
 
         /// <summary>
         /// 階段を削除するコマンド
         /// </summary>
-        public ReactiveCommand RemoveStairsCommand { get; set; }
-
+        public ReactiveCommand RemoveStairsUpCommand { get; set; }
+        public ReactiveCommand RemoveStairsDownCommand { get; set; }
         /// <summary>
         /// 出口を追加するコマンド
         /// </summary>
@@ -301,16 +255,6 @@ namespace shoji_Layout
         /// 柱を削除するコマンド
         /// </summary>
         public ReactiveCommand RemovePillarCommand { get; set; }
-
-        /// <summary>
-        /// 自動販売機を追加するコマンド
-        /// </summary>
-        public ReactiveCommand AddDrinkCommand { get; set; }
-
-        /// <summary>
-        /// 自動販売機を削除するコマンド
-        /// </summary>
-        public ReactiveCommand RemoveDrinkCommand { get; set; }
 
         /// <summary>
         /// Xamlデザイナー用のコンストラクタ
@@ -343,14 +287,6 @@ namespace shoji_Layout
 
             KaisatuY = new ReactiveProperty<double>(0);
 
-            ElevatorWidth = new ReactiveProperty<double>(50);
-
-            ElevatorHeight = new ReactiveProperty<double>(50);
-
-            ElevatorX = new ReactiveProperty<double>(0);
-
-            ElevatorY = new ReactiveProperty<double>(0);
-
             RoomWidth = new ReactiveProperty<double>(50);
 
             RoomHeight = new ReactiveProperty<double>(50);
@@ -359,13 +295,21 @@ namespace shoji_Layout
 
             RoomY = new ReactiveProperty<double>(0);
 
-            StairsWidth = new ReactiveProperty<double>(50);
+            StairsUpWidth = new ReactiveProperty<double>(50);
 
-            StairsHeight = new ReactiveProperty<double>(50);
+            StairsUpHeight = new ReactiveProperty<double>(50);
 
-            StairsX = new ReactiveProperty<double>(0);
+            StairsUpX = new ReactiveProperty<double>(0);
 
-            StairsY = new ReactiveProperty<double>(0);
+            StairsUpY = new ReactiveProperty<double>(0);
+
+            StairsDownWidth = new ReactiveProperty<double>(50);
+
+            StairsDownHeight = new ReactiveProperty<double>(50);
+
+            StairsDownX = new ReactiveProperty<double>(0);
+
+            StairsDownY = new ReactiveProperty<double>(0);
 
             GoalWidth = new ReactiveProperty<double>(10);
 
@@ -391,17 +335,9 @@ namespace shoji_Layout
 
             PillarY = new ReactiveProperty<double>(0);
 
-            DrinkWidth = new ReactiveProperty<double>(50);
-
-            DrinkHeight = new ReactiveProperty<double>(50);
-
-            DrinkX = new ReactiveProperty<double>(0);
-
-            DrinkY = new ReactiveProperty<double>(0);
-
             Bitmap = new RenderTargetBitmap(
-                1000,
-                1000,
+                station_.Width,
+                station_.Height,
                 96,
                 96,
                 PixelFormats.Default);
@@ -433,14 +369,6 @@ namespace shoji_Layout
 
             RemoveKaisatuCommand.Subscribe(_ => RemoveKaisatu());
 
-            AddElevatorCommand = new ReactiveCommand();
-
-            AddElevatorCommand.Subscribe(_ => AddElevators());
-
-            RemoveElevatorCommand = new ReactiveCommand();
-
-            RemoveElevatorCommand.Subscribe(_ => RemoveElevator());
-
             AddRoomCommand = new ReactiveCommand();
 
             AddRoomCommand.Subscribe(_ => AddRooms());
@@ -449,13 +377,22 @@ namespace shoji_Layout
 
             RemoveRoomCommand.Subscribe(_ => RemoveRoom());
 
-            AddStairsCommand = new ReactiveCommand();
+            AddStairsUpCommand = new ReactiveCommand();
 
-            AddStairsCommand.Subscribe(_ => AddStairss());
+            AddStairsUpCommand.Subscribe(_ => AddStairsUp());
 
-            RemoveStairsCommand = new ReactiveCommand();
+            RemoveStairsUpCommand = new ReactiveCommand();
 
-            RemoveStairsCommand.Subscribe(_ => RemoveStairs());
+            RemoveStairsUpCommand.Subscribe(_ => RemoveStairsUp());
+
+            AddStairsDownCommand = new ReactiveCommand();
+
+            AddStairsDownCommand.Subscribe(_ => AddStairsDown());
+
+            RemoveStairsDownCommand = new ReactiveCommand();
+
+            RemoveStairsDownCommand.Subscribe(_ => RemoveStairsDown());
+
 
             AddGoalCommand = new ReactiveCommand();
 
@@ -480,14 +417,6 @@ namespace shoji_Layout
             RemovePillarCommand = new ReactiveCommand();
 
             RemovePillarCommand.Subscribe(_ => RemovePillar());
-
-            AddDrinkCommand = new ReactiveCommand();
-
-            AddDrinkCommand.Subscribe(_ => AddDrinks());
-
-            RemoveDrinkCommand = new ReactiveCommand();
-
-            RemoveDrinkCommand.Subscribe(_ => RemoveDrink());
 
             //描画（リストは空なので白い大きな四角）
             DrawLayout();
@@ -596,29 +525,6 @@ namespace shoji_Layout
         }
 
         /// <summary>
-        /// レイアウト情報にエレベーターを追加する関数
-        /// </summary>
-        public void AddElevators()
-        {
-            station_.Elevators.Add(new StationElevatorParam(ElevatorWidth.Value, ElevatorHeight.Value, ElevatorX.Value, ElevatorY.Value));
-
-            DrawLayout();
-        }
-
-        /// <summary>
-        /// リストの最後に存在するエレベーター情報を削除する
-        /// </summary>
-        public void RemoveElevator()
-        {
-            if (station_.Elevators.Count() != 0)
-            {
-                station_.Elevators.RemoveAt(station_.Elevators.Count() - 1);
-            }
-
-            DrawLayout();
-        }
-
-        /// <summary>
         /// レイアウト情報に駅員室を追加する関数
         /// </summary>
         public void AddRooms()
@@ -644,9 +550,9 @@ namespace shoji_Layout
         /// <summary>
         /// レイアウト情報に階段を追加する関数
         /// </summary>
-        public void AddStairss()
+        public void AddStairsUp()
         {
-            station_.Stairss.Add(new StationStairsParam(StairsWidth.Value, StairsHeight.Value, StairsX.Value, StairsY.Value));
+            station_.StairsUp.Add(new StationStairsUpParam(StairsUpWidth.Value, StairsUpHeight.Value, StairsUpX.Value, StairsUpY.Value));
 
             DrawLayout();
         }
@@ -654,15 +560,39 @@ namespace shoji_Layout
         /// <summary>
         /// リストの最後に存在する階段情報を削除する
         /// </summary>
-        public void RemoveStairs()
+        public void RemoveStairsUp()
         {
-            if (station_.Stairss.Count() != 0)
+            if (station_.StairsUp.Count() != 0)
             {
-                station_.Stairss.RemoveAt(station_.Stairss.Count() - 1);
+                station_.StairsUp.RemoveAt(station_.StairsUp.Count() - 1);
             }
 
             DrawLayout();
         }
+
+        /// <summary>
+        /// レイアウト情報に階段を追加する関数
+        /// </summary>
+        public void AddStairsDown()
+        {
+            station_.StairsDown.Add(new StationStairsDownParam(StairsDownWidth.Value, StairsDownHeight.Value, StairsDownX.Value, StairsDownY.Value));
+
+            DrawLayout();
+        }
+
+        /// <summary>
+        /// リストの最後に存在する階段情報を削除する
+        /// </summary>
+        public void RemoveStairsDown()
+        {
+            if (station_.StairsDown.Count() != 0)
+            {
+                station_.StairsDown.RemoveAt(station_.StairsDown.Count() - 1);
+            }
+
+            DrawLayout();
+        }
+
 
         /// <summary>
         /// レイアウト情報に出口を追加する
@@ -733,28 +663,6 @@ namespace shoji_Layout
             DrawLayout();
         }
 
-        /// <summary>
-        /// レイアウト情報にベンチを追加する関数
-        /// </summary>
-        public void AddDrinks()
-        {
-            station_.Drinks.Add(new StationDrinkParam(DrinkWidth.Value, DrinkHeight.Value, DrinkX.Value, DrinkY.Value));
-
-            DrawLayout();
-        }
-
-        /// <summary>
-        /// リストの最後に存在するベンチ情報を削除する
-        /// </summary>
-        public void RemoveDrink()
-        {
-            if (station_.Drinks.Count() != 0)
-            {
-                station_.Drinks.RemoveAt(station_.Drinks.Count() - 1);
-            }
-
-            DrawLayout();
-        }
 
         ///<summary>
         ///ノードが他のノードの近くにあった時統合する
@@ -803,36 +711,76 @@ namespace shoji_Layout
             foreach (var kaisatu in station_.Kaisatus)
             {
                 DrawContext.DrawRectangle(
-                    Brushes.White,
+                    Brushes.Yellow,
                     new Pen(Brushes.Black, 1),
-                    new Rect(kaisatu.PositionX - kaisatu.Width / 2, kaisatu.PositionY - kaisatu.Height / 2, kaisatu.Width, kaisatu.Height));
+                    new Rect(kaisatu.PositionX , kaisatu.PositionY, kaisatu.Width, kaisatu.Height));
             }
 
-            //エレベーターの描画
-            foreach (var elevator in station_.Elevators)
-            {
-                DrawContext.DrawRectangle(
-                    Brushes.White,
-                    new Pen(Brushes.Black, 1),
-                    new Rect(elevator.PositionX - elevator.Width / 2, elevator.PositionY - elevator.Height / 2, elevator.Width, elevator.Height));
-            }
 
             //駅員室の描画
             foreach (var room in station_.Rooms)
             {
                 DrawContext.DrawRectangle(
-                    Brushes.White,
+                    Brushes.Black,
                     new Pen(Brushes.Black, 1),
-                    new Rect(room.PositionX - room.Width / 2, room.PositionY - room.Height / 2, room.Width, room.Height));
+                    new Rect(room.PositionX , room.PositionY , room.Width, room.Height));
             }
 
-            //階段の描画
-            foreach (var stairs in station_.Stairss)
+            //上に線がある階段の描画
+            foreach (var stairsUp in station_.StairsUp)
             {
-                DrawContext.DrawRectangle(
-                    Brushes.White,
+                ///<summary>
+                ///左の線
+                /// </summary>
+                DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Rect(stairs.PositionX - stairs.Width / 2, stairs.PositionY - stairs.Height / 2, stairs.Width, stairs.Height));
+                    new Point(stairsUp.PositionX, stairsUp.PositionY),
+                    new Point(stairsUp.PositionX, stairsUp.PositionY + stairsUp.Height));
+
+                ///<summary>
+                ///右の線
+                /// </summary>
+                DrawContext.DrawLine(
+                    new Pen(Brushes.Black, 1),
+                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY),
+                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY + stairsUp.Height));
+
+                ///<summary>
+                ///上の線
+                /// </summary>
+                DrawContext.DrawLine(
+                    new Pen(Brushes.Black, 1),
+                    new Point(stairsUp.PositionX, stairsUp.PositionY),
+                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY));
+            }
+
+
+            //下に線がある階段の描画
+            foreach (var stairsDown in station_.StairsDown)
+            {
+                ///<summary>
+                ///左の線
+                /// </summary>
+                DrawContext.DrawLine(
+                    new Pen(Brushes.Black, 1),
+                    new Point(stairsDown.PositionX, stairsDown.PositionY),
+                    new Point(stairsDown.PositionX, stairsDown.PositionY + stairsDown.Height));
+
+                ///<summary>
+                ///右の線
+                /// </summary>
+                DrawContext.DrawLine(
+                    new Pen(Brushes.Black, 1),
+                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY),
+                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY + stairsDown.Height));
+
+                ///<summary>
+                ///下の線
+                /// </summary>
+                DrawContext.DrawLine(
+                    new Pen(Brushes.Black, 1),
+                    new Point(stairsDown.PositionX, stairsDown.PositionY+stairsDown.Height),
+                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY+stairsDown.Height));
             }
 
             //出口の描画
@@ -841,7 +789,7 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Red,
                     null,
-                    new Rect(goal.PositionX - goal.Width / 2, goal.PositionY - goal.Height / 2, goal.Width, goal.Height));
+                    new Rect(goal.PositionX , goal.PositionY , goal.Width, goal.Height));
             }
 
             //ベンチの描画
@@ -850,26 +798,18 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Red,
                     null,
-                    new Rect(bench.PositionX - bench.Width / 2, bench.PositionY - bench.Height / 2, bench.Width, bench.Height));
+                    new Rect(bench.PositionX , bench.PositionY , bench.Width, bench.Height));
             }
 
             //柱の描画
             foreach (var pillar in station_.Pillars)
             {
                 DrawContext.DrawRectangle(
-                    Brushes.Red,
+                    Brushes.Blue,
                     null,
-                    new Rect(pillar.PositionX - pillar.Width / 2, pillar.PositionY - pillar.Height / 2, pillar.Width, pillar.Height));
+                    new Rect(pillar.PositionX , pillar.PositionY , pillar.Width, pillar.Height));
             }
 
-            //自動販売機の描画
-            foreach (var drink in station_.Drinks)
-            {
-                DrawContext.DrawRectangle(
-                    Brushes.Red,
-                    null,
-                    new Rect(drink.PositionX - drink.Width / 2, drink.PositionY - drink.Height / 2, drink.Width, drink.Height));
-            }
 
             //ノードの描画
             foreach (var node in nodes_)
