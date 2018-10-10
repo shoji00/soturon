@@ -1,0 +1,18 @@
+{
+  "Width": 1000,
+  "Height": 1000,
+  "Kaisatus": [
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 40.0,
+      "PositionY": 40.0
+    }
+  ],
+  "Rooms": [],
+  "StairsUp": [],
+  "StairsDown": [],
+  "Goals": [],
+  "Benchs": [],
+  "Pillars": []
+}
