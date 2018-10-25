@@ -22,11 +22,6 @@ namespace shoji_Layout
         private StationLayoutParam station_;
 
         ///<summary>
-        ///ノードのリスト
-        ///</summary>
-        private List<Node> nodes_;
-
-        ///<summary>
         ///画像のサイズ変更
         ///</summary>
         private Image image_;
@@ -271,8 +266,6 @@ namespace shoji_Layout
         {
             station_ = new StationLayoutParam();
 
-            nodes_ = new List<Node>();
-
             image_ = image;
 
             LayoutWidth = new ReactiveProperty<int>(station_.Width);
@@ -410,13 +403,6 @@ namespace shoji_Layout
 
             RemoveBenchCommand.Subscribe(_ => RemoveBench());
 
-            AddPillarCommand = new ReactiveCommand();
-
-            AddPillarCommand.Subscribe(_ => AddPillars());
-
-            RemovePillarCommand = new ReactiveCommand();
-
-            RemovePillarCommand.Subscribe(_ => RemovePillar());
 
             //描画（リストは空なので白い大きな四角）
             DrawLayout();
@@ -432,52 +418,6 @@ namespace shoji_Layout
                 fileDialog.Filter = "Json Files(.json)|*.json";
                 fileDialog.Title = "開くファイルを選択してください";
                 fileDialog.Multiselect = false;
-
-
-                //ダイアログを表示する
-                if (fileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    using (var streamReader = new StreamReader(fileDialog.FileName))
-                    {
-                        var json = streamReader.ReadToEnd();
-
-                        station_ = JsonConvert.DeserializeObject<StationLayoutParam>(json);
-
-                        nodes_.Clear();
-
-                        //ノードの設定  
-                        foreach (var kaisatu in station_.Kaisatus) 
-                        {
-                            double distance = 25;
-
-                            SetUpNodes(new Node(
-                                kaisatu.PositionX - (kaisatu.Width / 2) - distance,
-                                kaisatu.PositionY - (kaisatu.Height / 2) + distance));
-
-                            SetUpNodes(new Node(
-                                kaisatu.PositionX - (kaisatu.Width / 2) - distance,
-                                kaisatu.PositionY - (kaisatu.Height / 2) - distance));
-
-                            SetUpNodes(new Node(
-                                kaisatu.PositionX - (kaisatu.Width / 2) + distance,
-                                kaisatu.PositionY - (kaisatu.Height / 2) - distance));
-
-                            SetUpNodes(new Node(
-                                kaisatu.PositionX - (kaisatu.Width / 2) + distance,
-                                kaisatu.PositionY - (kaisatu.Height / 2) + distance));                               
-                        }
-
-                        //出口の設定
-                        foreach(var goal in station_.Goals)
-                        {
-                            nodes_.Add(new Node(goal.PositionX, goal.PositionY, true));
-                        }
-
-                    }
-
-
-
-                }
 
             }
         }
@@ -640,58 +580,13 @@ namespace shoji_Layout
             DrawLayout();
         }
 
-        /// <summary>
-        /// レイアウト情報に柱を追加する関数
-        /// </summary>
-        public void AddPillars()
-        {
-            station_.Pillars.Add(new StationPillarParam(PillarWidth.Value, PillarHeight.Value, PillarX.Value, PillarY.Value));
-
-            DrawLayout();
-        }
-
-        /// <summary>
-        /// リストの最後に存在するベンチ情報を削除する
-        /// </summary>
-        public void RemovePillar()
-        {
-            if (station_.Pillars.Count() != 0)
-            {
-                station_.Pillars.RemoveAt(station_.Pillars.Count() - 1);
-            }
-
-            DrawLayout();
-        }
-
-
-        ///<summary>
-        ///ノードが他のノードの近くにあった時統合する
-        /// </summary>
-        public void SetUpNodes(Node node)
-        {
-            foreach(var nodes in nodes_)
-            {
-                if (nodes.DistanceFromNode(node) < 25)
-                {
-                    nodes.X = (nodes.X + nodes.X) / 2.0;
-                    nodes.Y = (nodes.Y + nodes.Y) / 2.0;
-                    return;
-                }
-            }
-            nodes_.Add(node);
-        }
-
-
-
+   
         /// <summary>
         /// レイアウトを描画する関数
         /// </summary>
         /// <param name="layout">レイアウトの情報</param>
         public void DrawLayout()
         {
-
-            double radius = 5;
-
             Bitmap = new RenderTargetBitmap(
                 station_.Width,
                 station_.Height,
@@ -713,7 +608,7 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Yellow,
                     new Pen(Brushes.Black, 1),
-                    new Rect(kaisatu.PositionX , kaisatu.PositionY, kaisatu.Width, kaisatu.Height));
+                    new Rect(kaisatu.PositionX  - kaisatu.Width / 2 , kaisatu.PositionY - kaisatu.Height / 2, kaisatu.Width, kaisatu.Height));
             }
 
 
@@ -723,7 +618,7 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Black,
                     new Pen(Brushes.Black, 1),
-                    new Rect(room.PositionX , room.PositionY , room.Width, room.Height));
+                    new Rect(room.PositionX - room.Width / 2 , room.PositionY - room.Height / 2 , room.Width, room.Height));
             }
 
             //上に線がある階段の描画
@@ -734,24 +629,24 @@ namespace shoji_Layout
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsUp.PositionX, stairsUp.PositionY),
-                    new Point(stairsUp.PositionX, stairsUp.PositionY + stairsUp.Height));
+                    new Point(stairsUp.PositionX - stairsUp.Width / 2, stairsUp.PositionY - stairsUp.Height / 2),
+                    new Point(stairsUp.PositionX - stairsUp.Width / 2, stairsUp.PositionY - stairsUp.Height / 2 + stairsUp.Height));
 
                 ///<summary>
                 ///右の線
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY),
-                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY + stairsUp.Height));
+                    new Point(stairsUp.PositionX + stairsUp.Width - stairsUp.Width / 2, stairsUp.PositionY - stairsUp.Height / 2),
+                    new Point(stairsUp.PositionX + stairsUp.Width - stairsUp.Width / 2, stairsUp.PositionY + stairsUp.Height -stairsUp.Height / 2));
 
                 ///<summary>
                 ///上の線
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsUp.PositionX, stairsUp.PositionY),
-                    new Point(stairsUp.PositionX + stairsUp.Width, stairsUp.PositionY));
+                    new Point(stairsUp.PositionX - stairsUp.Width / 2, stairsUp.PositionY - stairsUp.Height / 2),
+                    new Point(stairsUp.PositionX + stairsUp.Width - stairsUp.Width / 2, stairsUp.PositionY -stairsUp.Height / 2));
             }
 
 
@@ -763,24 +658,24 @@ namespace shoji_Layout
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsDown.PositionX, stairsDown.PositionY),
-                    new Point(stairsDown.PositionX, stairsDown.PositionY + stairsDown.Height));
+                    new Point(stairsDown.PositionX - stairsDown.Width / 2, stairsDown.PositionY - stairsDown.Height / 2),
+                    new Point(stairsDown.PositionX - stairsDown.Width / 2, stairsDown.PositionY + stairsDown.Height - stairsDown.Height / 2));
 
                 ///<summary>
                 ///右の線
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY),
-                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY + stairsDown.Height));
+                    new Point(stairsDown.PositionX+stairsDown.Width - stairsDown.Width / 2, stairsDown.PositionY - stairsDown.Height / 2),
+                    new Point(stairsDown.PositionX+stairsDown.Width - stairsDown.Width / 2, stairsDown.PositionY + stairsDown.Height - stairsDown.Height / 2));
 
                 ///<summary>
                 ///下の線
                 /// </summary>
                 DrawContext.DrawLine(
                     new Pen(Brushes.Black, 1),
-                    new Point(stairsDown.PositionX, stairsDown.PositionY+stairsDown.Height),
-                    new Point(stairsDown.PositionX+stairsDown.Width, stairsDown.PositionY+stairsDown.Height));
+                    new Point(stairsDown.PositionX - stairsDown.Width / 2, stairsDown.PositionY+stairsDown.Height - stairsDown.Height / 2),
+                    new Point(stairsDown.PositionX + stairsDown.Width - stairsDown.Width / 2, stairsDown.PositionY + stairsDown.Height - stairsDown.Height / 2));
             }
 
             //出口の描画
@@ -789,7 +684,7 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Red,
                     null,
-                    new Rect(goal.PositionX , goal.PositionY , goal.Width, goal.Height));
+                    new Rect(goal.PositionX - goal.Width / 2 , goal.PositionY - goal.Height / 2 , goal.Width, goal.Height));
             }
 
             //ベンチの描画
@@ -798,26 +693,7 @@ namespace shoji_Layout
                 DrawContext.DrawRectangle(
                     Brushes.Red,
                     null,
-                    new Rect(bench.PositionX , bench.PositionY , bench.Width, bench.Height));
-            }
-
-            //柱の描画
-            foreach (var pillar in station_.Pillars)
-            {
-                DrawContext.DrawRectangle(
-                    Brushes.Blue,
-                    null,
-                    new Rect(pillar.PositionX , pillar.PositionY , pillar.Width, pillar.Height));
-            }
-
-
-            //ノードの描画
-            foreach (var node in nodes_)
-            {
-                DrawContext.DrawEllipse(
-                    Brushes.Blue,
-                    null,
-                    new Point(node.X, node.Y), radius, radius);
+                    new Rect(bench.PositionX - bench.Width / 2 , bench.PositionY - bench.Height / 2 , bench.Width, bench.Height));
             }
 
 

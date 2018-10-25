@@ -5,8 +5,14 @@
     {
       "Width": 50.0,
       "Height": 50.0,
-      "PositionX": 150.0,
-      "PositionY": 150.0
+      "PositionX": 100.0,
+      "PositionY": 100.0
+    },
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 20.0,
+      "PositionY": 100.0
     }
   ],
   "Rooms": [],

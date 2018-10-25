@@ -450,71 +450,7 @@
                         Command="{Binding RemoveBenchCommand}" />
             </StackPanel>
 
-            <TextBlock Margin="400,-580,300,590"
-                       Text="Pillar"
-                       Foreground="White"
-                       FontSize="20" />
-
-            <StackPanel Orientation="Horizontal"
-                        Margin="400,-580,300,590">
-                <TextBlock Margin="10,0,0,0"
-                           Text="Width:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding PillarWidth.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,0,0"
-                           Text="Height:"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding PillarHeight.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Margin="400,-580,300,590">
-                <TextBlock Margin="10,0,4,0"
-                           Text="     X :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding PillarX.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-
-                <TextBlock Margin="10,0,4,0"
-                           Text="      Y :"
-                           Foreground="White"
-                           FontSize="15" />
-                <TextBox Height="20"
-                         Width="100"
-                         Text="{Binding PillarY.Value, Mode=TwoWay}"
-                         FontSize="15"
-                         HorizontalAlignment="Left" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Add"
-                    Margin="400,-580,300,590"
-                    HorizontalAlignment="Left"
-                    Height="20"
-                    Width="100"
-                    Command="{Binding AddPillarCommand}" />
-
-                <Button Content="Remove"
-                        Margin="-280,-580,300,590"
-                        HorizontalAlignment="Left"
-                        Height="20"
-                        Width="100"
-                        Command="{Binding RemovePillarCommand}" />
-            </StackPanel>
+ 
 
             <TextBlock Margin="10,10,0,0"
                        Text="File"

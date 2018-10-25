@@ -1,23 +1,24 @@
 {
   "Width": 1000,
   "Height": 1000,
-  "Kaisatus": [
+  "Kaisatus": [],
+  "Rooms": [],
+  "StairsUp": [
     {
       "Width": 50.0,
       "Height": 50.0,
-      "PositionX": 100.0,
+      "PositionX": 200.0,
       "PositionY": 200.0
-    },
-    {
-      "Width": 50.0,
-      "Height": 50.0,
-      "PositionX": 150.0,
-      "PositionY": 400.0
     }
   ],
-  "Rooms": [],
-  "StairsUp": [],
-  "StairsDown": [],
+  "StairsDown": [
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 600.0,
+      "PositionY": 600.0
+    }
+  ],
   "Goals": [
     {
       "Width": 10.0,
@@ -26,5 +27,12 @@
       "PositionY": 0.0
     }
   ],
-  "Benchs": []
+  "Benchs": [
+    {
+      "Width": 10.0,
+      "Height": 2000.0,
+      "PositionX": 400.0,
+      "PositionY": 0.0
+    }
+  ]
 }

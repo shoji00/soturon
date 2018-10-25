@@ -1,17 +1,24 @@
 {
   "Width": 1000,
   "Height": 1000,
-  "Kaisatus": [
+  "Kaisatus": [],
+  "Rooms": [],
+  "StairsUp": [
     {
       "Width": 50.0,
       "Height": 50.0,
-      "PositionX": 150.0,
-      "PositionY": 150.0
+      "PositionX": 400.0,
+      "PositionY": 400.0
     }
   ],
-  "Rooms": [],
-  "StairsUp": [],
-  "StairsDown": [],
+  "StairsDown": [
+    {
+      "Width": 50.0,
+      "Height": 50.0,
+      "PositionX": 300.0,
+      "PositionY": 300.0
+    }
+  ],
   "Goals": [
     {
       "Width": 10.0,

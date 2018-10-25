@@ -83,7 +83,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Agent.cs" />
-    <Compile Include="Node.cs" />
     <Compile Include="StationLayoutParam.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MainWindowView.xaml.cs">
